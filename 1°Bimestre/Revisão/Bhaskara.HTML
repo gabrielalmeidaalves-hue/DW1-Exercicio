@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhaskara</title>
+</head>
+<body>
+    <h1>Bhaskara</h1>
+    <label for="InputA">Insira o coeficiente A:</label>
+    <input type="number" id="InputA"><br><br>
+    <label for="InputB">Insira o coeficiente B:</label>
+    <input type="number" id="InputB"><br><br>
+    <label for="InputC">Insira o coeficiente C:</label>
+    <input type="number" id="InputC"><br><br>
+
+    <input type="button" value="Calcular" onclick="FuncaoBHASKARA()">
+
+    <label for="Resposta:"></label>
+    <span id="Resposta"></span>
+
+    <script>
+        function FuncaoBHASKARA(){
+        let ValorA = parseFloat(document.getElementById("InputA").value);
+        let ValorB = parseFloat(document.getElementById("InputB").value);
+        let ValorC = parseFloat(document.getElementById("InputC").value);
+
+        let delta = ValorB**2 - 4*ValorA*ValorC
+        if(delta<0){
+            alert("não possui raiz real");
+        }else{
+        let Rdelta = Math.sqrt(delta)
+        let X1 = (Rdelta - ValorB)/(2*ValorA)
+        let X2 = (Rdelta + ValorB)/(2*ValorA)
+
+        document.getElementById("Resposta").innerHTML = "As raízes são " + X1.toFixed(2) + " e " + X2.toFixed(2)
+    }
+
+        }
+    </script>
+</body>
+</html>
