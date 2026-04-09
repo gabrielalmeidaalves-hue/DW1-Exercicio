@@ -41,5 +41,6 @@ if(horas==1){
         }
     
    document.getElementById("resultado").innerHTML = Valorbase
+    //a
     
 }

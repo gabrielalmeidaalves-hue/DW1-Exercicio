@@ -32,3 +32,5 @@ if (isNaN(altura) || altura <= 0) {
     }
             respostaEl.innerHTML = "Classificação: " + resposta + "<br>" + "IMC: " + imc.toFixed(2)
         }
+
+        
