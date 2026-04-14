@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Estacionamento</title>
+    <link rel="stylesheet" href="Estacionamento.CSS">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Calculadora de Tarifas</h1>
+            <p>Sistema de gestão de estacionamento</p>
+        </header>
+
+        <div id="container-aviso" class="aviso" hidden>
+            <span id="mensagem-aviso"></span>
+        </div>
+
+        <section class="form-section">
+            <div id="painel-entrada">
+                <div class="input-group">
+                    <label for="checkin">Data e hora de Entrada(checkin):</label>
+                    <input type="datetime-local" id="checkin" min="0.5" step="0.5" placeholder="Ex: 08/04/2026, 10:01" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="checkout">Data e hora de Saída(checkout):</label>
+                    <input type="datetime-local" id="checkout" min="0.5" step="0.5" placeholder="Ex: 11/04/2026, 10:20" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="comprimento" name="comprimento">
+                        Veículo de grande porte (Adicional de 25%)
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="frequente" name="frequente">
+                        Cliente frequente (Desconto de 5%)
+                    </label>
+                </div>
+
+                <button type="button" class="btn-calcular" onclick="calcularTarifa()">Calcular Tarifa</button>
+            </div>
+        </section>
+
+        <section class="resultado-section">
+            <div id="resultado">O valor total será exibido aqui.</div>
+        </section>
+    </main>
+
+    <script src="Estacionamento.JS"></script>
+</body>
+</html>

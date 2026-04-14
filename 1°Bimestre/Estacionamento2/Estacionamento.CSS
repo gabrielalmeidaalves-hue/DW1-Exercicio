@@ -1,0 +1,145 @@
+/* Definição de Variáveis de Cores e Estilo */
+:root {
+    --cor-fundo: #f0f4f8; /* Azul muito claro para o fundo da página */
+    --cor-branco: #ffffff; /* Branco predominante no container */
+    --cor-azul-escuro: #1e3a8a; /* Azul para textos de destaque e títulos */
+    --cor-aquamarine: #2dd4bf; /* Destaque primário (botão) */
+    --cor-aquamarine-hover: #14b8a6; /* Hover do botão */
+    --cor-texto: #334155; /* Cor base para textos de leitura */
+    --cor-erro-fundo: #ef4444; /* Fundo vermelho para avisos */
+    --cor-erro-texto: #ffffff; /* Texto branco para avisos */
+    --borda-raio: 8px;
+}
+
+/* Reset básico e configurações de box-model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+}
+
+/* Container principal (80% da tela na horizontal) */
+.container {
+    width: 80%;
+    max-width: 600px; /* Limite para não ficar esticado demais em telas ultrawide */
+    background-color: var(--cor-branco);
+    padding: 2.5rem;
+    border-radius: var(--borda-raio);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: var(--cor-azul-escuro);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Estilização do container de avisos/erros */
+.aviso {
+    background-color: var(--cor-erro-fundo);
+    color: var(--cor-erro-texto);
+    padding: 1rem;
+    border-radius: var(--borda-raio);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Estilos dos inputs e labels */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--cor-azul-escuro);
+}
+
+.input-group input[type="number"] {
+    padding: 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--borda-raio);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input[type="number"]:focus {
+    border-color: var(--cor-aquamarine);
+}
+
+.checkbox-group {
+    margin-bottom: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cor-aquamarine);
+    cursor: pointer;
+}
+
+/* Botão de Calcular */
+.btn-calcular {
+    width: 100%;
+    background-color: var(--cor-aquamarine);
+    color: var(--cor-branco);
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: var(--borda-raio);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-calcular:hover {
+    background-color: var(--cor-aquamarine-hover);
+}
+
+/* Sessão de Resultado */
+.resultado-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--cor-fundo);
+    text-align: center;
+}
+
+#resultado {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--cor-azul-escuro);
+}
+<!--
