@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Estacionamento</title>
+    <link rel="stylesheet" href="Restaurante.CSS">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Restaurante</h1>
+            <p>Sistema de gestão do Restaurante</p>
+        </header>
+
+        <div id="container-aviso" class="aviso" hidden>
+            <span id="mensagem-aviso"></span>
+        </div>
+
+        <section class="form-section">
+            <div id="painel-entrada">
+                <div class="input-group">
+                    <label for="CachorroQ">Cachorro quente básico:</label>
+                    <input type="number" id="CachorroQ"  min="0"  required>
+                </div>
+
+                <div class="checkbox-group">
+                     <div class="input-group">
+                    <label for="CachorroQ2">Cachorro quente duplo:</label>
+                    <input type="number" id="CachorroQ2" min="0">
+                </div>
+
+                  <div class="input-group">
+                    <label for="X-salada">X-salada:</label>
+                    <input type="number" id="X-salada" min="0">
+                </div>
+
+                 <div class="input-group">
+                    <label for="Refrigerante_350">Refrigerante (350ml):</label>
+                    <input type="number" id="Refrigerante_350" min="0">
+                </div>
+
+                  <div class="input-group">
+                    <label for="Refrigerante_1">Refrigerante (1L):</label>
+                    <input type="number" id="Refrigerante_1" min="0">
+                </div>
+
+
+                <button type="button" class="btn-calcular" onclick="CalcularCompra()">Calcular Compra</button>
+            </div>
+        </section>
+
+        <section class="resultado-section">
+            <div id="resultado">O valor total será exibido aqui.</div>
+        </section>
+    </main>
+
+    <script src="Restaurante.JS"></script>
+</body>
+</html>
