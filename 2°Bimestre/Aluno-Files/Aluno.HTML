@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enviar Imagem e Mensagens</title>
+    <link rel="stylesheet" href="Aluno.CSS">
+</head>
+
+<body>
+    <h1>Configurações de Conexão</h1>
+    <main>
+          <label for="enderecoServidorInput">Endereço do Servidor:</label>
+    <input type="text" id="enderecoServidorInput" placeholder="Digite o endereço do servidor" value="localhost"><br><br>
+    
+    <label for="inputPorta">Porta:</label>
+    <input type="text" id="inputPorta" placeholder="Digite a porta" value="3000"><br><br>
+    
+    <hr>
+
+    <h2>Envie uma Imagem para o servidor</h2>
+    <label for="inputImagem">Selecione a Imagem:</label>
+    <input type="file" id="inputImagem" accept="image/*"><br><br>
+    <button onclick="enviarImagem()">Enviar Imagem</button>
+    
+    <br><br>
+    <h3> Resposta do servidor (Upload)</h3>
+    <span id="respostaImagem">.....</span>   
+
+    <hr>
+
+    <h2>Calcular Hipotenusa</h2>
+    <label for="ra">RA:</label>
+    <input type="text" id="ra" placeholder="Digite o RA"><br><br>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite o nome"><br><br>
+
+    <label for="Nota1">Nota 1:</label>
+    <input type="number" id="Nota1" placeholder="Digite a primeira nota"><br><br>
+    <label for="Nota2">Nota 2:</label>
+    <input type="number" id="Nota2" placeholder="Digite a segunda nota"><br><br>
+
+    <label for="Nota3">Nota 3:</label>
+    <input type="number" id="Nota3" placeholder="Digite a terceira nota"><br><br>
+    <label for="Nota4">Nota 4:</label>
+    <input type="number" id="Nota4" placeholder="Digite a quarta nota"><br><br>
+
+    <button onclick="enviarMensagem()">Calcular</button>    
+    
+    <br><br>
+    <h3> Resposta do servidor (Média)</h3>
+    <span id="respostaDoServidor">.....</span>    
+    </main>
+  
+
+    <script>
+        // --- NOVA FUNÇÃO PARA ENVIAR IMAGEM ---
+        async function enviarImagem() {
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            const inputImagem = document.getElementById('inputImagem');
+
+            // Verifica se o usuário de fato selecionou um arquivo
+            if (inputImagem.files.length === 0) {
+                alert('Por favor, selecione uma imagem primeiro!');
+                return;
+            }
+
+            // Captura o arquivo propriamente dito
+            const arquivoImagem = inputImagem.files[0];
+
+            // IMPORTANTE: Criamos um FormData para estruturar o envio do arquivo
+            const formData = new FormData();
+            // O primeiro parâmetro 'foto' deve ser exatamente igual ao configurado no upload.single('foto') do servidor
+            formData.append('foto', arquivoImagem);
+
+            try {
+                document.getElementById("respostaImagem").innerHTML = "Enviando...";
+
+                // Faz a requisição FETCH enviando o formData diretamente no body
+                // NOTA: Não adicionamos o 'Content-Type' nos headers. O próprio navegador define o Content-Type correto com o "boundary" necessário para multipart/form-data.
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-imagem`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Falha na resposta do servidor');
+                }
+
+                const data = await response.json(); // Recebe o JSON de resposta
+
+                // Atualiza o HTML com a mensagem retornada pelo servidor
+                document.getElementById("respostaImagem").innerHTML = 
+                    `Status: ${data.mensagem}<br>Salvo como: <b>${data.nomeArquivo}</b>`;
+
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById("respostaImagem").innerHTML = "Erro ao enviar.";
+                alert('Erro na comunicação com o servidor ao enviar imagem');
+            }
+        }
+
+        // --- SUA FUNÇÃO ANTERIOR MANTIDA ---
+        async function enviarMensagem() {            
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            
+            const meuPacoteDeDados = {               
+                nota1: parseFloat(document.getElementById('Nota1').value),
+                nota2: parseFloat(document.getElementById('Nota2').value),
+                nota3: parseFloat(document.getElementById('Nota3').value),
+                nota4: parseFloat(document.getElementById('Nota4').value),
+            };
+            
+            try {
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-mensagem`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(meuPacoteDeDados),
+                });
+                
+                const data = await response.text();
+                const {media} = JSON.parse(data); 
+                
+                document.getElementById("respostaDoServidor").innerHTML = " A média é: " + media;
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+    </script>
+</body>
+
+</html>

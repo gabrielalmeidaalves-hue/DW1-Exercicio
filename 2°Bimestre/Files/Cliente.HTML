@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enviar Imagem e Mensagens</title>
+    <link rel="stylesheet" href="Cliente.CSS">
+</head>
+
+<body>
+    <h1>Configurações de Conexão</h1>
+    <label for="enderecoServidorInput">Endereço do Servidor:</label>
+    <input type="text" id="enderecoServidorInput" placeholder="Digite o endereço do servidor" value="localhost"><br><br>
+    
+    <label for="inputPorta">Porta:</label>
+    <input type="text" id="inputPorta" placeholder="Digite a porta" value="3000"><br><br>
+    
+    <hr>
+
+    <h2>Envie uma Imagem para o servidor</h2>
+    <label for="inputImagem">Selecione a Imagem:</label>
+    <input type="file" id="inputImagem" accept="image/*"><br><br>
+    <button onclick="enviarImagem()">Enviar Imagem</button>
+    
+    <br><br>
+    <h3> Resposta do servidor (Upload)</h3>
+    <span id="respostaImagem">.....</span>   
+
+    <hr>
+
+    <h2>Calcular Hipotenusa</h2>
+    <label for="inputCateto1">Cateto 1:</label>
+    <input type="text" id="inputCateto1" placeholder="Digite o valor do cateto 1"><br><br>
+    <label for="inputCateto2">Cateto 2:</label>
+    <input type="text" id="inputCateto2" placeholder="Digite o valor do cateto 2"><br><br>
+    <button onclick="enviarMensagem()">Calcular</button>
+    
+    <br><br>
+    <h3> Resposta do servidor (Pitágoras)</h3>
+    <span id="respostaDoServidor">.....</span>    
+
+    <script>
+        // --- NOVA FUNÇÃO PARA ENVIAR IMAGEM ---
+        async function enviarImagem() {
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            const inputImagem = document.getElementById('inputImagem');
+
+            // Verifica se o usuário de fato selecionou um arquivo
+            if (inputImagem.files.length === 0) {
+                alert('Por favor, selecione uma imagem primeiro!');
+                return;
+            }
+
+            // Captura o arquivo propriamente dito
+            const arquivoImagem = inputImagem.files[0];
+
+            // IMPORTANTE: Criamos um FormData para estruturar o envio do arquivo
+            const formData = new FormData();
+            // O primeiro parâmetro 'foto' deve ser exatamente igual ao configurado no upload.single('foto') do servidor
+            formData.append('foto', arquivoImagem);
+
+            try {
+                document.getElementById("respostaImagem").innerHTML = "Enviando...";
+
+                // Faz a requisição FETCH enviando o formData diretamente no body
+                // NOTA: Não adicionamos o 'Content-Type' nos headers. O próprio navegador define o Content-Type correto com o "boundary" necessário para multipart/form-data.
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-imagem`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Falha na resposta do servidor');
+                }
+
+                const data = await response.json(); // Recebe o JSON de resposta
+
+                // Atualiza o HTML com a mensagem retornada pelo servidor
+                document.getElementById("respostaImagem").innerHTML = 
+                    `Status: ${data.mensagem}<br>Salvo como: <b>${data.nomeArquivo}</b>`;
+
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById("respostaImagem").innerHTML = "Erro ao enviar.";
+                alert('Erro na comunicação com o servidor ao enviar imagem');
+            }
+        }
+
+        // --- SUA FUNÇÃO ANTERIOR MANTIDA ---
+        async function enviarMensagem() {            
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            
+            const meuPacoteDeDados = {               
+                x: parseFloat(document.getElementById('inputCateto1').value),
+                y: parseFloat(document.getElementById('inputCateto2').value)
+            };
+            
+            try {
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-mensagem`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(meuPacoteDeDados),
+                });
+                
+                const data = await response.text();
+                const {hipotenusa} = JSON.parse(data); 
+                
+                document.getElementById("respostaDoServidor").innerHTML = " A hipotenusa é: " + hipotenusa;
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+    </script>
+</body>
+
+</html>

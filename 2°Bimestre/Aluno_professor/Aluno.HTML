@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enviar mensagens</title>
+</head>
+
+<body>
+    <h1>Envie uma mensagem para o servidor</h1>
+    <label for="enderecoServidorInput">Endereço do Servidor:</label>
+    <input type="text" id="enderecoServidorInput" placeholder="Digite o endereço do servidor" value="localhost"><br><br>
+    
+    <label for="inputPorta">Porta:</label>
+    <input type="text" id="inputPorta" placeholder="Digite a porta" value="3000"><br><br>
+    <label for="Nome">Nome:</label>
+    <input type="text" id="Nome" placeholder="Digite um nome">
+    <br><br>
+    <label for="Nota">Nota:</label>
+    <input type="text" id="Nota" placeholder="Digite uma nota">
+    <button onclick="enviarMensagem()">Enviar</button>
+    <br>
+    <br>
+    <h3> Resposta do servidor</h3>
+    <span id="respostaDoServidor">.....</span>    
+
+    <script>
+        async function enviarMensagem() {            
+            const mensagem = document.getElementById('Nome').value;
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            // Criando um pacote de dados para enviar ao servidor
+            const meuPacoteDeDados = {               
+                Nome: parseFloat(document.getElementById('Nome').value),
+                NOta: parseFloat(document.getElementById('Nota').value)
+            };
+            //processo de envio da mensagem para o servidor usando fetch API
+            try {
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-mensagem`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(meuPacoteDeDados),
+                });
+                //quando retornar a resposta do servidor, aguarde e processe a resposta
+                const data = await response.text(); // ESPERE e receba a resposta como texto
+
+                const {Valor} = JSON.parse(data); // ANALISE a resposta JSON para extrair o resultado
+
+                
+                
+                document.getElementById("respostaDoServidor").innerHTML = " " + m;
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+    </script>
+</body>
+
+</html>
