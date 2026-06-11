@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Documento Oficial</title>
+</head>
+
+ <body onload="carregarDados()">
+    <header>
+        <h1>AUTORIZAÇÃO DE VIAGEM ESPORTIVA</h1>
+    </header>
+
+    <main>
+        <p id="paragrafo">
+            Eu, <span id="saidaResponsavel"></span>, na qualidade de responsável legal, autorizo o(a) atleta 
+            <span id="saidaAtleta"></span>, inscrito(a) no CPF nº 
+            <span id="saidaCpf"></span>, a realizar viagem com saída da cidade de 
+            <span id="saidaOrigem"></span> com destino à cidade de 
+            <span id="saidaDestino"></span>, para participação na modalidade esportiva de 
+            <span id="saidaModalidade"></span> na categoria 
+            <span id="saidaCategoria"></span>.<br><br>
+
+            Declaro estar ciente e de acordo com a referida viagem, assumindo total responsabilidade pela autorização concedida. <br><br>
+
+            Assinatura do responsável: _______________________________________
+        </p>
+
+        <div class="acoes">
+            <button onclick="imprimir()">🖨️ Imprimir</button>
+            <button onclick="voltar()">⬅️ Voltar</button>
+        </div>
+    </main>
+
+    <script src="Autorizacao.js"></script>
+</body>
+</html>

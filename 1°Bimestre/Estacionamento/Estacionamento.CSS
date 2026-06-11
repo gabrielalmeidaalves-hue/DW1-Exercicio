@@ -1,6 +1,6 @@
 /* Definição de Variáveis de Cores e Estilo */
 :root {
-    --cor-fundo: #f0f4f8; /* Azul muito claro para o fundo da página */
+    --cor-fundo: #f0f4f8e2; /* Azul muito claro para o fundo da página */
     --cor-branco: #ffffff; /* Branco predominante no container */
     --cor-azul-escuro: #1e3a8a; /* Azul para textos de destaque e títulos */
     --cor-aquamarine: #2dd4bf; /* Destaque primário (botão) */

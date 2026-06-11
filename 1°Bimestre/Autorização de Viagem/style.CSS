@@ -1,0 +1,138 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+}
+
+/* HEADER */
+header {
+    background: #0d1b2a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* MAIN */
+main {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   /* centraliza horizontal */
+    padding: 40px 20px;
+}
+
+/* FORM CARD */
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* INPUT GROUP */
+form div {
+    margin-bottom: 15px;
+}
+
+/* LABEL */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 5px rgba(42,82,152,0.3);
+}
+
+/* BOTÃO */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1e3c72;
+}
+
+/* TEXTO DESTINO (AUTORIZAÇÃO) */
+#paragrafo {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 900px;
+    line-height: 1.6;
+    height: 800;
+    font-size: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* DESTAQUE DOS DADOS */
+span {
+    font-weight: bold;
+    color: #1e3c72;
+}
+
+/* RESPONSIVO */
+@media (max-width: 500px) {
+    form, #paragrafo {
+        padding: 20px;
+    }
+
+    header {
+        font-size: 18px;
+    }
+}
+
+.acoes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.acoes button {
+    width: auto;
+    padding: 10px 20px;
+}
+
+/* Botão voltar com cor diferente */
+.acoes button:last-child {
+    background: #6c757d;
+}
+
+.acoes button:last-child:hover {
+    background: #5a6268;
+}

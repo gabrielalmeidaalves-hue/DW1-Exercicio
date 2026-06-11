@@ -4,6 +4,8 @@
 
      let respostaEl = document.getElementById("resposta");
 
+
+
 if (isNaN(peso) || peso < 5) {
     respostaEl.innerHTML = "Insira um peso maior que 5 Kg!";
     respostaEl.className = "erro";
