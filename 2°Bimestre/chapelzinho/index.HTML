@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lojinha da Vovó - Sistema de Bilhetes</title>
+    <link rel="stylesheet" href="index.CSS">
+    
+</head>
+
+<body>
+    <h1> Lojinha da Vovó - Sistema de Bilhetes</h1>
+    
+    <div class="container">
+        <h3>Clientina envia um Bilhete para a Vovó</h3>
+        <p>Digite uma mensagem e clique em "Enviar" para conversar com a Servidorina:</p>
+        
+        <label for="inputMensagem"> Seu bilhete:</label>
+        <input type="text" id="inputMensagem" placeholder="Ex: vovó, chegou, situacao..." />
+        
+        <button onclick="enviarMensagem()"> Enviar Bilhete</button>
+        
+        <div class="exemplos">
+            <p><strong> Bilhetes que a Vovó entende:</strong></p>
+            <p>• Digite <span class="codigo">vovó</span> → Ela responde "oi, em que posso ajudar?"</p>
+            <p>• Digite <span class="codigo">chegou</span> → Ela responde "a Chapeuzinho chegou aqui com o bilhete"</p>
+            <p>• Digite <span class="codigo">situacao</span> → Ela consulta o estoque e fala o que precisa repor</p>
+            <p>• Digite <span class="codigo">paes</span> → Ela consulta o estoque e fala a quantidade de paes</p>
+            <p>• Digite <span class="codigo">bolo</span> → Ela consulta o estoque e fala a quantidade de bolo</p>
+            <p>• Digite <span class="codigo">minimos</span> → Ela consulta o estoque e responde as quantidades minimas de cada produto</p>
+            <p>• Digite qualquer outra coisa → Ela responde "mensagem não entendida"</p>
+        </div>
+        
+        <div id="resultadoMensagem" class="resultado"> Aguardando sua mensagem...</div>
+    </div>
+
+    <script>
+        // Configuração do servidor (fácil de entender para iniciantes)
+        const enderecoServidor = 'localhost';
+        const porta = '3001';
+
+        // Função para enviar mensagem via POST
+        async function enviarMensagem() {
+            // 1. Pegar o que o usuário digitou
+            const mensagem = document.getElementById('inputMensagem').value.trim();
+            
+            // 2. Verificar se não está vazio
+            if (!mensagem) {
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro"> Não envie bilhetes em branco!</div>';
+                return;
+            }
+
+            // 3. Montar o pacote (JSON) que será enviado
+            const bilheteJSON = {
+                mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
+            };
+
+            try {
+                // 4. Enviar o bilhete para a Servidorina usando POST
+                const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagens`, {
+                    method: 'POST',              // Método POST (enviar dados)
+                    headers: {
+                        'Content-Type': 'application/json',  // Diz que estamos enviando JSON
+                    },
+                    body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
+                });
+                
+                // 5. Converter a resposta da Servidorina para JSON
+                const dados = await resposta.json();
+
+                // 6. Mostrar a resposta na tela
+                if (dados.status === "sucesso") {
+                    // Formata a resposta para mostrar quebras de linha
+                    const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
+                    document.getElementById('resultadoMensagem').innerHTML = `
+                        <div class="sucesso">
+                            <strong> A Vovó respondeu:</strong><br>
+                            ${mensagemFormatada}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('resultadoMensagem').innerHTML = `<div class="erro"> ${dados.mensagem}</div>`;
+                }
+                
+                // 7. Limpar o campo de entrada
+                document.getElementById('inputMensagem').value = '';
+                
+            } catch (erro) {
+                // 8. Se algo deu errado na comunicação
+                console.error('Erro:', erro);
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro"> O Lobo interceptou a Internetina! Erro de conexão com a Servidorina.</div>';
+            }
+        }
+
+        // Permitir enviar pressionando Enter
+        document.getElementById('inputMensagem').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                enviarMensagem();
+            }
+        });
+    </script>
+</body>
+
+</html>
