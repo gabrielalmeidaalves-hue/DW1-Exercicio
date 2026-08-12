@@ -17,11 +17,12 @@ function procurePorChavePrimaria(chave) {
 // Função para procurar um elemento pela chave primária   -------------------------------------------------------------
 function procure() {
     const id = document.getElementById("inputId").value;
-    if (isNaN(id) || !Number.isInteger(Number(id))) {
-        mostrarAviso("Precisa ser um número inteiro");
+    if (isNaN(id) || !Number.isInteger(Number(id)) || id<0) {
+        mostrarAviso("Precisa ser um número natural");
         document.getElementById("inputId").focus();
         return;
     }
+
 
     if (id) { // se digitou um Id
         filme = procurePorChavePrimaria(id);
@@ -84,10 +85,32 @@ function salvar() {
     }
 
     const id_filme = parseInt(document.getElementById("inputId").value);
-    const nome = document.getElementById("inputNome").value;
-    const ano = document.getElementById("inputAno").value;
+    const nome = document.getElementById("inputNome").value.trim();
+    const ano = document.getElementById("inputAno").value.trim();
     const genero = document.getElementById("inputGenero").value;
-    const duracao = document.getElementById("inputDuracao").value;
+    const duracao = document.getElementById("inputDuracao").value.trim();
+
+
+
+
+
+    if(nome.length<3 || nome === ""){
+     mostrarAviso("Preencha o campo nome corretamente(Deve ter mais que 2 letras)!")
+     document.getElementById("inputNome").focus();
+     return;
+    }
+
+    if(isNaN(ano) || ano<1895 || ano>2026 || ano === ""){
+     mostrarAviso("Informe um ano válido entre 1895 e 2026!")
+     document.getElementById("inputAno").focus();
+     return;
+  }
+
+      if(isNaN(duracao) || duracao<40 || duracao === ""){
+     mostrarAviso("Preencha o campo duração corretamente!")
+     document.getElementById("inputDuracao").focus();
+     return;
+  }
 
     //verificar se o que foi digitado pelo USUÁRIO está correto
     if (id_filme && nome && ano && genero && duracao) {// se tudo certo 
