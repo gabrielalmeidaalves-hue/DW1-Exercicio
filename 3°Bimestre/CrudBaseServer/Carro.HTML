@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Carro - Banco de Dados</title>
+    <link rel="stylesheet" href="Carro.css">
+</head>
+
+<body onload="listar()">
+
+    <div class="container">
+        <h1>Cadastro de Carro</h1>
+
+        <label for="inputId_carro">Id_carro</label>
+        <input type="text" name="inputId_carro" id="inputId_carro">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+
+        <label for="inputNome_carro">Nome_carro</label>
+        <input type="text" name="inputNome_carro" id="inputNome_carro">
+
+        <label for="inputModelo_carro">Modelo_carro</label>
+        <input type="text" name="inputModelo_carro" id="inputModelo_carro">
+
+        <label for="inputAno">Ano</label>
+        <input type="number" name="inputAno" id="inputAno">
+
+        <div id="divAviso">Informe o ID e clique em Procure</div>
+
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+
+        <h3>Veículos Cadastrados:</h3>
+        <div id="outputSaida">Carregando...</div>
+    </div>
+
+
+    <script src="./CarroControle.js"></script>
+</body>
+
+</html>
