@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Pessoas - Banco de Dados</title>
+    <link rel="stylesheet" href="Pessoa.CSS">
+</head>
+
+<body onload="listar()">
+
+    <div class="container">
+        <h1>Cadastro de pessoas</h1>
+
+        <label for="cpf">Cpf</label>
+        <input type="text" name="cpf" id="cpf">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+
+        <label for="data_nascimento">data_nascimento</label>
+        <input type="date" name="data_nascimento" id="data_nascimento">
+
+        <label for="nome_mae">Nome_mae</label>
+        <input type="text" name="nome_mae" id="nome_mae">
+    
+        <label for="altura">altura</label>
+        <input type="text" name="altura" id="altura" placeholder="ex:1.88">
+
+        <div id="divAviso">Informe o cpf e clique em Procure</div>
+
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+
+        <h3>Pessoas Cadastradas:</h3>
+        <div id="outputSaida">Carregando...</div>
+    </div>
+
+
+    <script src="./PessoaControle.js"></script>
+</body>
+
+</html>

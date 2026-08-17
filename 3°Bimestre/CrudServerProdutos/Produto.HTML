@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Produtos - Banco de Dados</title>
+    <link rel="stylesheet" href="Produto.CSS">
+</head>
+
+<body onload="listar()">
+
+    <div class="container">
+        <h1>Cadastro de Produtos</h1>
+
+        <label for="id_produto">id_produto</label>
+        <input type="text" name="id_produto" id="id_produto">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+
+        <label for="nome_produto">nome_produto</label>
+        <input type="text" name="nome_produto" id="nome_produto">
+
+        <label for="quantidade_estoque">quantidade_estoque</label>
+        <input type="number" name="quantidade_estoque" id="quantidade_estoque">
+
+        <label for="preco_unitario">preco_unitario</label>
+        <input type="number" name="preco_unitario" id="preco_unitario">
+
+        <div id="divAviso">Informe o ID e clique em Procure</div>
+
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+
+        <h3>Produtos Cadastrados:</h3>
+        <div id="outputSaida">Carregando...</div>
+    </div>
+
+
+    <script src="./ProdutoControle.js"></script>
+</body>
+
+</html>

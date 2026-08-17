@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Filmes - Banco de Dados</title>
+    <link rel="stylesheet" href="Filmes.CSS">
+</head>
+
+<body onload="listar()">
+
+    <div class="container">
+        <h1>Cadastro de Filmes</h1>
+
+        <label for="inputId_filme">id_filme:</label>
+        <input type="text" name="inputId_filme" id="inputId_filme">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+
+        <label for="inputNome_filme">Nome_filme:</label>
+        <input type="text" name="inputNome_filme" id="inputNome_filme">
+
+        <label for="inputdiretor_filme">diretor_filme:</label>
+        <input type="text" name="inputdiretor_filme" id="inputdiretor_filme">
+
+        <label for="data_lancamento">data_lancamento:</label>
+        <input type="date" name="data_lancamento" id="data_lancamento">
+
+        <label for="duracao_minutos">duracao_minutos:</label>
+        <input type="number" name="duracao_minutos" id="duracao_minutos">
+
+
+        <div id="divAviso">Informe o ID e clique em Procure</div>
+
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+
+        <h3>Veículos Cadastrados:</h3>
+        <div id="outputSaida">Carregando...</div>
+    </div>
+
+
+    <script src="./FilmesControle.js"></script>
+</body>
+
+</html>
