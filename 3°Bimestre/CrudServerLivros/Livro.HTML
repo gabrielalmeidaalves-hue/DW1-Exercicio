@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Livros - Banco de Dados</title>
+    <link rel="stylesheet" href="Livro.CSS">
+</head>
+
+<body onload="listar()">
+
+    <div class="container">
+        <h1>Cadastro de Livros</h1>
+
+        <label for="id_livro">id_livro</label>
+        <input type="text" name="id_livro" id="id_livro">
+        <input type="button" value="Procure" id="btProcure" onclick="procure()" style="display:inline;">
+        <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+        <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+        <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+
+        <label for="titulo">titulo</label>
+        <input type="text" name="titulo" id="titulo">
+
+        <label for="autor">autor</label>
+        <input type="text" name="autor" id="autor">
+
+        <label for="ano_publicacao">publicacao</label>
+        <input type="number" name="ano_publicacao" id="ano_publicacao">
+
+        <label for="genero">Gênero:</label>
+
+    <select id="genero" name="genero">
+    <option value="">Selecione um gênero</option>
+    <option value="Romance">Romance</option>
+    <option value="Fantasia">Fantasia</option>
+    <option value="Ficcao">Ficção</option>
+    <option value="Terror">Terror</option>
+    <option value="Suspense">Suspense</option>
+    <option value="Aventura">Aventura</option>
+    <option value="Acao">Ação</option>
+    <option value="Comedia">Comédia</option>
+    <option value="Drama">Drama</option>
+    <option value="Misterio">Mistério</option>
+    <option value="Biografia">Biografia</option>
+    <option value="Historia">História</option>
+    <option value="Distopia">Distopia</option>
+    <option value="Ficcao Cientifica">Ficção Científica</option>
+    <option value="Horror">Horror</option>
+    <option value="Aventura">Aventura</option>
+    <option value="Poesia">Poesia</option>
+    <option value="Cronica">Crônica</option>
+    <option value="Autoajuda">Autoajuda</option>
+    <option value="Fantasia">Fantasia</option>
+</select>
+
+        <label for="paginas">paginas</label>
+        <input type="number" name="paginas" id="paginas">
+
+        <div id="divAviso">Informe o ID e clique em Procure</div>
+
+        <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+        <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+
+        <h3>Livros Cadastrados:</h3>
+        <div id="outputSaida">Carregando...</div>
+    </div>
+
+
+    <script src="./LivroControle.js"></script>
+</body>
+
+</html>

@@ -28,6 +28,8 @@ async function procure() {
         return;
     }
 
+
+
     produto = await procurePorChavePrimaria(id_produto);
     if (produto) {
         mostrarDadosproduto(produto);
@@ -74,6 +76,23 @@ async function salvar() {
         return;
     }
 
+    if(nome_produto.length<3 || nome_produto.length>50){
+        mostrarAviso("O nome precisa estar entre 3-50 letras");
+        document.getElementById("nome_produto").focus();
+        return;
+    }
+
+    if(quantidade_estoque<0){
+        mostrarAviso("A quantidade deve ser um valor positivo");
+        document.getElementById("quantidade_estoque").focus();
+        return;
+    }
+
+    if(preco_unitario<0){
+        mostrarAviso("O preço deve ser um valor positivo");
+        document.getElementById("preco_unitario").focus();
+        return;
+    }
     const dadosproduto = { id_produto, nome_produto, quantidade_estoque, preco_unitario };
 
     try {

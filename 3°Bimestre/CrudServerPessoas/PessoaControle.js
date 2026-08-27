@@ -67,7 +67,7 @@ async function salvar() {
     let cpf = pessoa ? pessoa.cpf : parseInt(document.getElementById("cpf").value);
     const nome = document.getElementById("nome").value;
     const data_nascimento= document.getElementById("data_nascimento").value;
-    const nome_mae = document.getElementById("nome_mae").value;7
+    const nome_mae = document.getElementById("nome_mae").value;
     const altura = parseFloat(document.getElementById("altura").value);
 
 
@@ -151,7 +151,7 @@ function mostrarDadospessoa(pessoa) {
     document.getElementById("cpf").value = pessoa.cpf;
     document.getElementById("nome").value = pessoa.nome;
     document.getElementById("nome_mae").value = pessoa.nome_mae;
-       document.getElementById("data_nascimento").value = pessoa.data_nascimento   ? new Date(pessoa.data_nascimento).toISOString().substring(0, 10) : '';
+       document.getElementById("data_nascimento").value = pessoa.data_nascimento  ? new Date(pessoa.data_nascimento).toISOString().substring(0, 10) : '';
     document.getElementById("altura").value = pessoa.altura;
     bloquearAtributos(true);
 }
